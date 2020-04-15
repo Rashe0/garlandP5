@@ -1,0 +1,226 @@
+{
+    "info": {
+        "description": "GarlandP5 API",
+        "version": "1.0.0",
+        "title": "Garlandtols wannabe API",
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "tags": {
+        "name": "admins",
+        "description": "Secured Admin-only actions"
+    },
+    "paths": {
+        "/users": {
+            "post": {
+                "summary": "creates user",
+                "operationId": "createUser",
+                "description": "Creates a new account in the system",
+                "produces": "application/json",
+                "responses": {
+                    "200": {
+                        "description": "Created a user",
+                        "schema": {
+                            "type": "Object",
+                            "$ref": "#/schemas/User"
+                        }
+                    },
+                    "400": {
+                        "description": "bad input parameter"
+                    },
+                    "409": {
+                        "description": "such user already exists"
+                    }
+                }
+            }
+        },
+        "/items": {
+            "get": {
+                "summary": "searches database",
+                "operationId": "getItem",
+                "description": "By passing in the appropriate options, you can search for items in the database",
+                "produces": "apllication/json",
+                "parameters": [ {
+                    "in": "query",
+                    "name": "searchByName",
+                    "description": "pass an optional search string for looking up items",
+                    "required": false,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "search results matching criteria",
+                        "schema": {
+                            "type": "Object",
+                            "$ref": "#/schemas/Item"
+                        }
+                    },
+                    "400": {
+                        "description": "bad input parameter"
+                    }
+                }
+            },
+            "post": {
+                "tags": "admins",
+                "summary": "adds an item",
+                "operationId": "addItem",
+                "description": "adds an item to the database",
+                "requestBody": {
+                    "description": "Item to add",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/schemas/Item"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "item created"
+                    },
+                    "400": {
+                        "description": "invalid input, object invalid"
+                    },
+                    "409": {
+                        "description": "an item already exists"
+                    }
+                } 
+            }     
+        }
+    },
+    "schemas":{
+        "User": {
+            "type": "object",
+            "required": ["id", "name", "email", "password"],
+            "properties": {
+                "id": {
+                    "type": "String",
+                    "format": "uuid",
+                    "example": "5e8321e14bedb514b4116044"
+                },
+                "name": {
+                    "type": "String",
+                    "minLength": "3",
+                    "maxLength": "20",
+                    "example": "Summoner4321"
+                },
+                "email": {
+                    "type": "String",
+                    "format": "email",
+                    "minLength": "5",
+                    "maxLength": "255",
+                    "unique": true,
+                    "example": "summoner1234@gmail.com"
+                },
+                "password": {
+                    "type": "String",
+                    "minLength": "8",
+                    "maxLength": "1024",
+                    "example": "heresgonnabeamassivehashedpasswordwithabunchofrandomcharacters"
+                },
+                "isAdmin": {
+                    "type": "Boolean",
+                    "example": "true"
+                }
+            }
+        },
+        "Item": {
+            "type": "object",
+            "required": ["name", "itemType"],
+            "properties": {
+                "name": {
+                    "type": "String",
+                    "example": "Neo-Ishgardian Armor of Fending",
+                    "unique": true
+                },
+                "itemType": {
+                    "type": "String",
+                    "example": "Armor"
+                },
+                "stats": {
+                    "type": "Object",
+                    "properties": {
+                        "stat1": {
+                            "type": "Object",
+                            "properties": {
+                                "statName": {
+                                    "type": "String"
+                                },
+                                "statValue": {
+                                    "type": "Number"
+                                }
+                            }
+                        }
+                    }
+                },
+                "materiaSlots": {
+                    "type": "object",
+                    "properties": {
+                        "reqClass": {
+                            "type": "String"
+                        },
+                        "slotsNo": {
+                            "type": "Number"
+                        }
+                    },
+                    "example": "{ Armorsmith, 2 }"
+                },
+                "sources": {
+                    "type": "Array",
+                    "items": "object",
+                    "properties": {
+                        "sourceType": {
+                            "type": "String"
+                        },
+                        "sourceNames": {
+                            "type": "Array",
+                            "items": {
+                                "type": "String"
+                            }
+                        }
+                    },
+                    "example": "[{ Gathering, [loc1, loc2] }, { Desynthesis, [item1, item2, item3] }"
+                },
+                "uses": {
+                    "type": "Array",
+                    "items": "object",
+                    "properties": {
+                        "useType": {
+                            "type": "String"
+                        },
+                        "useNames": {
+                            "type": "Array",
+                            "items": {
+                                "type": "String"
+                            }
+                        }
+                    },
+                    "example": "[{ Crafting Ingredient, [item1, item2] } }"
+                },
+                "craftingRequirements": {
+                    "type": "Object",
+                    "properties": {
+                        "reqCraft": "Number",
+                        "reqControl": "Number",
+                        "unlockItem": "String"
+                    },
+                    "example": "{ 2480, 2195, 'Master Armorsmith VIII' }"
+                },
+                "craftingIngredients": {
+                    "type": "Array",
+                    "items": {
+                        "type": "Object",
+                        "properties": {
+                            "itemName": "String",
+                            "quantity": "Number"
+                        }
+                    },
+                    "example": "[ { Tempest Adhesive, 4 }, { Workbench Resin, 4 }"
+                } 
+            }
+        }
+    }   
+}  
