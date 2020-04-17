@@ -140,21 +140,30 @@
                     "type": "String",
                     "example": "Armor"
                 },
-                "stats": {
-                    "type": "Object",
-                    "properties": {
-                        "stat1": {
-                            "type": "Object",
-                            "properties": {
-                                "statName": {
-                                    "type": "String"
-                                },
-                                "statValue": {
-                                    "type": "Number"
-                                }
-                            }
-                        }
-                    }
+                "mainStat1": {
+                    "$ref": "#/schemas/statBase",
+                    "example": "{ Damage, 128 }"
+                    
+                },
+                "mainStat2": {
+                    "$ref": "#/schemas/statBase",
+                    "example": "{ Auto Attack, 124 }"
+                },
+                "subStat1": {
+                    "$ref": "#/schemas/statBase",
+                    "example": "{ Vitality, 278 }"
+                },
+                "subStat2": {
+                    "$ref": "#/schemas/statBase",
+                    "example": "{ Intelligence, 244 }"
+                },
+                "subStat3": {
+                    "$ref": "#/schemas/statBase",
+                    "example": "{ Critical Hit, 328 }"
+                },
+                "subStat4": {
+                    "$ref": "#/schemas/statBase",
+                    "example": "{ Determination, 320 }"
                 },
                 "materiaSlots": {
                     "type": "object",
@@ -169,35 +178,11 @@
                     "example": "{ Armorsmith, 2 }"
                 },
                 "sources": {
-                    "type": "Array",
-                    "items": "object",
-                    "properties": {
-                        "sourceType": {
-                            "type": "String"
-                        },
-                        "sourceNames": {
-                            "type": "Array",
-                            "items": {
-                                "type": "String"
-                            }
-                        }
-                    },
+                    "$ref": "#/schemas/sourcesUses",
                     "example": "[{ Gathering, [loc1, loc2] }, { Desynthesis, [item1, item2, item3] }"
                 },
                 "uses": {
-                    "type": "Array",
-                    "items": "object",
-                    "properties": {
-                        "useType": {
-                            "type": "String"
-                        },
-                        "useNames": {
-                            "type": "Array",
-                            "items": {
-                                "type": "String"
-                            }
-                        }
-                    },
+                    "$ref": "#/schemas/sourcesUses",
                     "example": "[{ Crafting Ingredient, [item1, item2] } }"
                 },
                 "craftingRequirements": {
@@ -221,6 +206,33 @@
                     "example": "[ { Tempest Adhesive, 4 }, { Workbench Resin, 4 }"
                 } 
             }
-        }
-    }   
-}  
+        },
+        "statBase": {
+            "type": "Object",
+            "properties": {
+                "statName": {
+                    "type": "String"
+                },
+                "statValue": {
+                    "type": "Number"
+                }
+            }
+        },
+        "sourcesUses": {
+            "type": "Array",
+            "items": "object",
+            "properties": {
+                "sourceType": {
+                    "type": "String"
+                },
+                "sourceNames": {
+                    "type": "Array",
+                    "items": {
+                        "type": "String"
+                     }
+                }
+            }
+         }
+    }
+}
+
