@@ -129,7 +129,7 @@
         },
         "Item": {
             "type": "object",
-            "required": ["name", "itemType"],
+            "required": ["name"],
             "properties": {
                 "name": {
                     "type": "String",
@@ -222,10 +222,10 @@
             "type": "Array",
             "items": "object",
             "properties": {
-                "sourceType": {
+                "sType": {
                     "type": "String"
                 },
-                "sourceNames": {
+                "sNames": {
                     "type": "Array",
                     "items": {
                         "type": "String"

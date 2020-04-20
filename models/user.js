@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 const Joi = require('@hapi/joi')
+const jwt = require('jsonwebtoken')
+const config = require('config')
 
 const userSchema = mongoose.Schema({
     name: {
@@ -24,6 +26,11 @@ const userSchema = mongoose.Schema({
     isAdmin: Boolean
 })
 
+userSchema.methods.generateAuthToken = function() {
+    const token = jwt.sign({_id = this._id, isAdmin = this.isAdmin}, config.get('jwtPrivateKey'))
+    return token
+}
+
 const User = mongoose.model("User", userSchema)
 
 function validateUser(user) {
@@ -36,3 +43,4 @@ function validateUser(user) {
 }
 
 exports.User = User
+exports.validate = validateUser
