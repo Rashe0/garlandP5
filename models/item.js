@@ -59,7 +59,7 @@ const Item = mongoose.model('Item', itemSchema)
 
 function validateItem(item){
     const schema = Joi.object({
-        name: Joi.string().required().unique(),
+        name: Joi.string().required(),
         itemType: Joi.string(),
         mainStat1: {
             statName: Joi.string(),
