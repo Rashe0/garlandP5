@@ -1,7 +1,7 @@
 const express = require('express')
 const {Item, validate} = require('../models/item')
 const router = express.Router()
-
+const auth = require('../middleware/auth')
 router.get('/', async(req, res) => {
     const items = await Item.find()
     res.send(items)
@@ -13,10 +13,9 @@ router.get('/:id', async(req, res) => {
     res.send(item)
 })
 
-router.post('/', async(req, res) => {
+router.post('/', auth, async(req, res) => {
     const { error } = validate(req.body)
     if(error) return res.status(400).send(error.details[0].message)
-    let i = 0
     let item = new Item({ 
         name: req.body.name,
         itemType: req.body.itemType,
@@ -36,7 +35,7 @@ router.post('/', async(req, res) => {
     res.send(item)
 })
 
-router.put('/:id', async(req, res) => {
+router.put('/:id', auth, async(req, res) => {
     const { error } = validate(req.body)
     if (!error) return res.status(400).send(error.details[0].message)
 
@@ -45,7 +44,7 @@ router.put('/:id', async(req, res) => {
     res.send(item)
 })
 
-router.delete('/:id', async(req, res) => {
+router.delete('/:id', auth, async(req, res) => {
     const item = await Item.findByIdAndRemove(req.params.id)
     if (!item) return res.status(404).send("Such item doesn't exist")
 

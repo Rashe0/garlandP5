@@ -1,6 +1,11 @@
 const mongoose = require('mongoose')
 const Joi = require('@hapi/joi')
 
+const statSchema = mongoose.Schema({
+    statName: String,
+    statValue: Number
+})
+
 const itemSchema = mongoose.Schema({
     name: {
         type: String,
@@ -8,30 +13,12 @@ const itemSchema = mongoose.Schema({
         unique: true
     },
     itemType: String,
-    mainStat1: {
-        statName: String,
-        statValue: Number
-    },
-    mainStat2: {
-        statName: String,
-        statValue: Number
-    },
-    subStat1: {
-        statName: String,
-        statValue: Number
-    },
-    subStat2: {
-        statName: String,
-        statValue: Number
-    },
-    subStat3: {
-        statName: String,
-        statValue: Number
-    },
-    subStat4: {
-        statName: String,
-        statValue: Number
-    },
+    mainStat1: statSchema,
+    mainStat2: statSchema,
+    subStat1: statSchema,
+    subStat2: statSchema,
+    subStat3: statSchema,
+    subStat4: statSchema,
     materiaSlots: {
         reqClass: String,
         slotsNo: Number
@@ -53,7 +40,10 @@ const itemSchema = mongoose.Schema({
         itemName: String,
         quantity: Number
     }]
+
 })
+
+
 
 const Item = mongoose.model('Item', itemSchema)
 
@@ -89,24 +79,26 @@ function validateItem(item){
             reqClass: Joi.string(),
             slotsNo: Joi.number()
         },
-        sources: [{
+        sources: Joi.array().items(Joi.object({
             sourceType: Joi.string(),
-            sourceNames:[Joi.string()]
-        }],
-        uses: [{
+            sourceNames:Joi.array().items(Joi.string())
+        })),
+        uses: Joi.array().items(Joi.object({
             useType: Joi.string(),
-            useNames:[Joi.string()]
-        }],
+            useNames:Joi.array().items(Joi.string())
+        })),
         craftingRequirements:{
             reqCraft: Joi.number(),
             reqControl: Joi.number(),
             unlockItem: Joi.string()
         },
-        craftingIngredients:[{
-            itemName: Joi.string(),
-            quantity: Joi.number()
-        }]
+        craftingIngredients: Joi.array().items(Joi.object({
+                itemName: Joi.string(),
+                quantity: Joi.number()
+            }
+        ))
     })
+    
     return schema.validate(item)
 }
 
