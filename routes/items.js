@@ -2,8 +2,26 @@ const express = require('express')
 const {Item, validate} = require('../models/item')
 const router = express.Router()
 const auth = require('../middleware/auth')
+
 router.get('/', async(req, res) => {
-    const items = await Item.find()
+    let items
+    if(!req.query.query) {
+        items = await Item
+        .find()
+        .limit(10)
+        .sort({ name: 1 })
+        .select({ name: 1 })
+        
+    }
+    else {
+        const regex = new RegExp(req.query.query, 'i')
+        items = await Item
+            .find({ name: regex }) //regex I need
+            .limit(10)
+            .sort({ name: 1 })
+            .select({ name: 1 })
+            
+    }
     res.send(items)
 })
 
