@@ -1,8 +1,6 @@
 const express = require('express')
 const {Item, validate} = require('../models/item')
 const router = express.Router()
-const auth = require('../middleware/auth')
-const admin = require('../middleware/admin')
 
 router.get('/', async(req, res) => {
     let items
