@@ -37,11 +37,10 @@ export default Vue.extend({
   name: 'Box',
   data() {
     return {
-      name: 'NAME',
       currentTab: 0,
-      crafting: {},
-      stats: {},
-      usesource: {},
+      crafting: null,
+      stats: null,
+      usesource: null,
     };
   },
   watch: {
