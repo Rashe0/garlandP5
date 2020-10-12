@@ -14,28 +14,28 @@
       </thead>
       <tbody>
         <tr>
-          <td>{{ this.stat1.name }}</td>
-          <td>{{ this.stat1.value }}</td>
+          <td>{{ stat1.statName }}</td>
+          <td>{{ stat1.statValue }}</td>
         </tr>
         <tr>
-          <td>{{ stat2.name }}</td>
-          <td>{{ stat2.value }}</td>
+          <td>{{ stat2.statName }}</td>
+          <td>{{ stat2.statValue }}</td>
         </tr>
         <tr>
-          <td>{{ substat1.name }}</td>
-          <td>{{ substat1.value }}</td>
+          <td>{{ substat1.statName }}</td>
+          <td>{{ substat1.statValue }}</td>
         </tr>
         <tr>
-          <td>{{ substat2.name }}</td>
-          <td>{{ substat2.value }}</td>
+          <td>{{ substat2.statName }}</td>
+          <td>{{ substat2.statValue }}</td>
         </tr>
         <tr>
-          <td>{{ substat3.name }}</td>
-          <td>{{ substat3.value }}</td>
+          <td>{{ substat3.statName }}</td>
+          <td>{{ substat3.statValue }}</td>
         </tr>
         <tr>
-          <td>{{ substat4.name }}</td>
-          <td>{{ substat4.value }}</td>
+          <td>{{ substat4.statName }}</td>
+          <td>{{ substat4.statValue }}</td>
         </tr>
       </tbody>
     </template>
@@ -54,8 +54,8 @@
       </thead>
       <tbody>
         <tr>
-          <td>{{ materia.name }}</td>
-          <td>{{ materia.value }}</td>
+          <td>{{ materia.reqClass }}</td>
+          <td>{{ materia.slotsNo }}</td>
         </tr>
       </tbody>
     </template>
@@ -66,8 +66,7 @@
 <script>
 export default {
   data() {
-    return {
-    };
+    return {};
   },
   props: ['stats'],
   computed: {
