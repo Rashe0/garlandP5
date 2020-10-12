@@ -5,7 +5,10 @@
       <thead>
         <tr>
           <th>
-            Statistics
+            Stat
+          </th>
+          <th>
+            Value
           </th>
         </tr>
       </thead>
@@ -43,6 +46,9 @@
         <tr>
           <th>
             Materia slots
+          </th>
+          <th>
+            Value
           </th>
         </tr>
       </thead>
