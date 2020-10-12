@@ -7,12 +7,15 @@
           <th>
             Requirements
           </th>
+          <th>
+            Quantity
+          </th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>{{ stat.name }}</td>
-          <td>{{ stat.value }}</td>
+        <tr v-if='craftingReq'>
+          <td>{{ craftingReq.unlockItem }}</td>
+          <td>{{ craftingReq.reqCraft }}</td>
         </tr>
       </tbody>
     </template>
@@ -22,14 +25,17 @@
       <thead>
         <tr>
           <th>
-            Ingredients
+            Ingredient
+          </th>
+          <th>
+            Quantity
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>{{ item.name }}</td>
-          <td>{{ item.value }}</td>
+        <tr v-for="ing in craftingIngr" :key="ing.itemName">
+          <td>{{ ing.itemName }}</td>
+          <td>{{ ing.quantity }}</td>
         </tr>
       </tbody>
     </template>

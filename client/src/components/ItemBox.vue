@@ -5,21 +5,26 @@
       <v-tabs
         v-model="currentTab"
         center-active>
-        <v-tab>Stats and Materia</v-tab>
-        <v-tab>Sources and Uses</v-tab>
-        <v-tab>Crafting</v-tab>
+        <v-tab v-if='stats'>Stats and Materia</v-tab>
+        <v-tab v-if='usesource'>Sources and Uses</v-tab>
+        <v-tab v-if='crafting'>Crafting</v-tab>
       </v-tabs>
       <v-tabs-items v-model="currentTab">
         <v-tab-item>
           <StatsMateria
-            :stats = 'stats'
+            v-if='stats'
+            :stats='stats'
           />
         </v-tab-item>
         <v-tab-item>
-          <!-- <UsesSources/> -->
+          <UsesSources v-if='usesource' :uses-sources='usesource' />
         </v-tab-item>
         <v-tab-item>
-          <!-- <CraftingList/> -->
+          <CraftingList
+            v-if='crafting'
+            :craftingIngr='crafting.craftingIngr'
+            :craftingReq='crafting.craftingReq'
+          />
         </v-tab-item>
       </v-tabs-items>
     </v-card>
@@ -30,8 +35,8 @@
 import Vue from 'vue';
 import axios from 'axios';
 import StatsMateria from './itemBox/StatsMateria.vue';
-// import CraftingList from './itemBox/CraftingList.vue';
-// import UsesSources from './itemBox/UsesSources.vue';
+import CraftingList from './itemBox/CraftingList.vue';
+import UsesSources from './itemBox/UsesSources.vue';
 
 export default Vue.extend({
   name: 'Box',
@@ -65,23 +70,27 @@ export default Vue.extend({
                 substat4: response2.data.subStat4,
                 materia: response2.data.materiaSlots,
               };
-              const usesource = {
-                sources: response2.data.sources,
-                uses: response2.data.uses,
-              };
+              // const usesource = {
+              //   sources: response2.data.sources,
+              //   uses: response2.data.uses,
+              // };
               this.crafting = crafting;
               this.stats = stats;
-              this.usesource = usesource;
-              debugger //eslint-disable-line
+              // this.usesource = usesource;
             });
         });
     },
   },
   props: ['selectedItem'],
+  computed: {
+    name() {
+      return this.selectedItem || 'Select an item';
+    },
+  },
   components: {
     StatsMateria,
-    // CraftingList,
-    // UsesSources,
+    CraftingList,
+    UsesSources,
   },
 });
 </script>

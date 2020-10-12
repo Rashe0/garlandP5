@@ -27,7 +27,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr v-for="use in uses" :key="use.name" >
           <td>{{ use.name }}</td>
           <td>{{ use.value }}</td>
         </tr>
