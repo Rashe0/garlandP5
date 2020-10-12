@@ -10,10 +10,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr
-          v-for="source in sources"
-          :key="source.name"
-        >
+        <tr>
           <td>{{ source.name }}</td>
           <td>{{ source.value }}</td>
         </tr>
@@ -30,10 +27,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr
-          v-for="use in uses"
-          :key="use.name"
-        >
+        <tr>
           <td>{{ use.name }}</td>
           <td>{{ use.value }}</td>
         </tr>
@@ -47,16 +41,9 @@
 export default {
   data() {
     return {
-      sources: [
-      ],
-      uses: [
-        {
-          name: 'Grand Company',
-          value: '1691',
-        },
-      ],
     };
   },
+  props: ['sources', 'uses'],
 };
 </script>
 

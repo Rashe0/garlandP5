@@ -10,12 +10,29 @@
         </tr>
       </thead>
       <tbody>
-        <tr
-          v-for="stat in stats"
-          :key="stat.name"
-        >
-          <td>{{ stat.name }}</td>
-          <td>{{ stat.value }}</td>
+        <tr>
+          <td>{{ this.stat1.name }}</td>
+          <td>{{ this.stat1.value }}</td>
+        </tr>
+        <tr>
+          <td>{{ stat2.name }}</td>
+          <td>{{ stat2.value }}</td>
+        </tr>
+        <tr>
+          <td>{{ substat1.name }}</td>
+          <td>{{ substat1.value }}</td>
+        </tr>
+        <tr>
+          <td>{{ substat2.name }}</td>
+          <td>{{ substat2.value }}</td>
+        </tr>
+        <tr>
+          <td>{{ substat3.name }}</td>
+          <td>{{ substat3.value }}</td>
+        </tr>
+        <tr>
+          <td>{{ substat4.name }}</td>
+          <td>{{ substat4.value }}</td>
         </tr>
       </tbody>
     </template>
@@ -30,10 +47,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr
-          v-for="materia in materias"
-          :key="materia.name"
-        >
+        <tr>
           <td>{{ materia.name }}</td>
           <td>{{ materia.value }}</td>
         </tr>
@@ -47,39 +61,17 @@
 export default {
   data() {
     return {
-      stats: [
-        {
-          name: 'Damage',
-          value: '166',
-        },
-        {
-          name: 'Auto-attack',
-          value: '127.92',
-        },
-        {
-          name: 'Intelligence',
-          value: '558',
-        },
-        {
-          name: 'Vitality',
-          value: '543',
-        },
-        {
-          name: 'Critical Hit',
-          value: '472',
-        },
-        {
-          name: 'Determination',
-          value: '330',
-        },
-      ],
-      materias: [
-        {
-          name: 'Alchemist',
-          value: '2',
-        },
-      ],
     };
+  },
+  props: ['stats'],
+  computed: {
+    stat1() { return this.stats.stat1; },
+    stat2() { return this.stats.stat2; },
+    substat1() { return this.stats.substat1; },
+    substat2() { return this.stats.substat2; },
+    substat3() { return this.stats.substat3; },
+    substat4() { return this.stats.substat4; },
+    materia() { return this.stats.materia; },
   },
 };
 </script>

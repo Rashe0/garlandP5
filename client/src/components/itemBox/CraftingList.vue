@@ -10,10 +10,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr
-          v-for="stat in stats"
-          :key="stat.name"
-        >
+        <tr>
           <td>{{ stat.name }}</td>
           <td>{{ stat.value }}</td>
         </tr>
@@ -30,10 +27,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr
-          v-for="item in items"
-          :key="item.name"
-        >
+        <tr>
           <td>{{ item.name }}</td>
           <td>{{ item.value }}</td>
         </tr>
@@ -47,24 +41,9 @@
 export default {
   data() {
     return {
-      items: [
-        {
-          name: 'Book',
-          value: '2912',
-        },
-      ],
-      stats: [
-        {
-          name: 'Craftsmanship',
-          value: '2480',
-        },
-        {
-          name: 'Control',
-          value: '2195',
-        },
-      ],
     };
   },
+  props: ['craftingReq', 'craftingIngr'],
 };
 </script>
 
