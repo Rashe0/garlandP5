@@ -26,7 +26,9 @@ export default {
         email: formData.get('email'),
         password: formData.get('password')
       }).then((response) => {
-        sessionStorage.setItem('token', response.data);
+        document.cookie = 'token=' + response.data; //eslint-disable-line
+        console.log(response);
+        location.href = '/'; //eslint-disable-line
       });
     }
   },

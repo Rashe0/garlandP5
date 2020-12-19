@@ -1,13 +1,15 @@
 <template>
-<v-app>
-  <form @submit="this.submitForm" id="loginForm">
-    <label for="email">Login:</label><br>
-    <input type="text" id="email" name="email"><br>
-    <label for="pass">Password:</label><br>
-    <input type="password" id="password" name="password">
-    <input type="submit">
-  </form>
-</v-app>
+<v-main>
+  <v-app>
+    <form @submit="this.submitForm" id="loginForm">
+      <label for="email">Login:</label><br>
+      <input type="text" id="email" name="email"><br>
+      <label for="pass">Password:</label><br>
+      <input type="password" id="password" name="password">
+      <input type="submit">
+    </form>
+  </v-app>
+</v-main>
 </template>
 
 <script>
@@ -24,8 +26,8 @@ export default {
         password: formData.get('password')
       }).then((response) => {
         document.cookie = 'token=' + response.data; //eslint-disable-line
-        // sessionStorage.setItem('token', response.data);
         console.log(response);
+        location.href = '/'; //eslint-disable-line
       });
     }
   },

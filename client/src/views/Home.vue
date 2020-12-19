@@ -1,17 +1,17 @@
 <template>
   <v-app>
-    <v-app-bar
+    <!-- <v-app-bar
       app
       color="primary"
       dark
-    >
+    > -->
     <SearchBar :items='this.items'
     v-model="selectedItem"/>
-    </v-app-bar>
+    <!-- </v-app-bar> -->
 
-    <v-main>
-      <ItemBox :selectedItem='this.selectedItem'/>
-    </v-main>
+    <!-- <v-main> -->
+    <ItemBox :selectedItem='this.selectedItem'/>
+    <!-- </v-main> -->
   </v-app>
 </template>
 
