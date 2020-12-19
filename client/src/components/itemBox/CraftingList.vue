@@ -13,9 +13,17 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-if='craftingReq'>
+        <tr>
+          <td>Unlock item</td>
           <td>{{ craftingReq.unlockItem }}</td>
+        </tr>
+        <tr>
+          <td>Craftsmanship</td>
           <td>{{ craftingReq.reqCraft }}</td>
+        </tr>
+        <tr>
+          <td>Control</td>
+          <td>{{ craftingReq.reqControl }}</td>
         </tr>
       </tbody>
     </template>
@@ -49,7 +57,11 @@ export default {
     return {
     };
   },
-  props: ['craftingReq', 'craftingIngr'],
+  props: ['crafting'],
+  computed: {
+    craftingReq() { return this.crafting.craftingReq; },
+    craftingIngr() { return this.crafting.craftingIngr; },
+  },
 };
 </script>
 

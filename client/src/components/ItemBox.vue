@@ -22,8 +22,7 @@
         <v-tab-item>
           <CraftingList
             v-if='crafting'
-            :craftingIngr='crafting.craftingIngr'
-            :craftingReq='crafting.craftingReq'
+            :crafting='crafting'
           />
         </v-tab-item>
       </v-tabs-items>

@@ -40,7 +40,10 @@
     "parserOptions": {
       "ecmaVersion": 2020
     },
-    "rules": {}
+    "rules": {
+      "comma-dangle": "off",
+      "linebreak-style": "off"
+    }
   },
   "browserslist": [
     "> 1%",
