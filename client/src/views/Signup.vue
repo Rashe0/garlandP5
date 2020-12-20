@@ -16,7 +16,7 @@
 import axios from 'axios';
 
 export default {
-  name: 'Login',
+  name: 'Signup',
   methods: {
     submitForm(event) {
       event.preventDefault();

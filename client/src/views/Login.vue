@@ -8,15 +8,21 @@
       <input type="password" id="password" name="password">
       <input type="submit">
     </form>
+    <SignupButton>
+    </SignupButton>
   </v-app>
 </v-main>
 </template>
 
 <script>
 import axios from 'axios';
+import SignupButton from '../components/SignupButton.vue';
 
 export default {
   name: 'Login',
+  components: {
+    SignupButton
+  },
   methods: {
     submitForm(event) {
       event.preventDefault();

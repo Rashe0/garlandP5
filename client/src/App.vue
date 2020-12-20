@@ -7,6 +7,8 @@
     >
       <LoginButton>
       </LoginButton>
+      <LogoutButton>
+      </LogoutButton>
     </v-app-bar>
     <v-main>
       <router-view />
@@ -16,10 +18,12 @@
 
 <script>
 import LoginButton from './components/LoginButton.vue';
+import LogoutButton from './components/LogoutButton.vue';
 
 export default {
   components: {
-    LoginButton
+    LoginButton,
+    LogoutButton
   }
 };
 </script>
