@@ -49,12 +49,12 @@ export default Vue.extend({
   },
   watch: {
     selectedItem(value) {
-      axios.get('http://localhost:5000/api/items')
+      axios.get('http://104.248.59.153:5000/api/items')
         .then((response) => {
           const peepoo = response.data.find((item) => item.name === value);
           console.log(peepoo);
           console.log(response.data);
-          axios.get('http://localhost:5000/api/items/' + peepoo._id) // eslint-disable-line
+          axios.get('http://104.248.59.153:5000/api/items/' + peepoo._id) // eslint-disable-line
             .then((response2) => {
               const crafting = {
                 craftingReq: response2.data.craftingRequirements,
