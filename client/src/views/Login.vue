@@ -27,7 +27,7 @@ export default {
     submitForm(event) {
       event.preventDefault();
       const formData = new FormData(document.getElementById('loginForm'));
-      axios.post('http://localhost:5000/api/auth', {
+      axios.post('https://garlandp5.xyz/api/auth', {
         email: formData.get('email'),
         password: formData.get('password')
       }).then((response) => {

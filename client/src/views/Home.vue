@@ -33,7 +33,7 @@ export default {
     selectedItem: null,
   }),
   created() {
-    axios.get('http://104.248.59.153:5000/api/items')
+    axios.get('https://garlandp5.xyz/api/items')
       .then((response) => {
         response.data.forEach((item) => {
           this.items.push({
