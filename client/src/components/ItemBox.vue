@@ -17,13 +17,13 @@
           />
         </v-tab-item>
         <v-tab-item>
-          <UsesSources v-if='usesource' :uses-sources='usesource' />
-        </v-tab-item>
-        <v-tab-item>
           <CraftingList
             v-if='crafting'
             :crafting='crafting'
           />
+        </v-tab-item>
+        <v-tab-item>
+          <UsesSources v-if='usesource' :uses-sources='usesource' />
         </v-tab-item>
       </v-tabs-items>
     </v-card>
